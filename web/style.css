@@ -1,0 +1,35 @@
+p {
+    color: blue
+}
+
+* {
+    background-color: rgb(236, 225, 225);
+}
+
+.myclass {
+    background-color: yellow;
+}
+
+#myclass {
+    background-color: rgb(14, 14, 3);
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+.auth-class {
+    height: 20vh;
+    width: 20vw;
+    background-color: blueviolet;
+}
+
+.auth-class1 {
+    height: 20vh;
+    width: 20vw;
+    background-color: rgb(43, 226, 73);
+}

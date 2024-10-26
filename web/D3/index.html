@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <form class="login-form" onsubmit="Login(event)">
+        <input type="email" name="" id="email" placeholder="email address" class="login-input" required>
+        <input type="password" name="" id="password" placeholder="password" class="login-input" required>
+        <input type="submit" value="Login" class="login-btn">
+        <button class="login-btn" onclick="myfun()">click</button>
+    </form>
+
+
+</body>
+<script>
+    console.log("Hello");
+    //alert("Hello");
+
+    let x = "10";
+    console.log(x);
+    x = 30;
+    console.log(x);
+    x = false;
+    console.log(x)
+    x = null;
+    console.log(x);
+    x = undefined;
+    console.log(x);
+    let obj = {
+        name: "Shailu",
+        age: 21,
+        isOk: true,
+    }
+    let obj1 = {
+        name: "Uppi",
+        age: 18,
+        isOk: true,
+    }
+    console.log(obj1.name)
+    const { name, age, isOk } = obj1
+    console.log(name)
+    console.log(obj, obj1);
+    let arr = ["shailu", "akki"];
+    //console.log(arr);
+    //console.log(45 - 5);
+    //console.log(obj.name);
+    let arr2 = [1, 2, 3, 4, 5];
+    //console.log(arr2);
+    let arr3 = [arr, arr2];
+    console.log(arr3);
+    let arr4 = [...arr, ...arr2];
+    console.log(arr4);
+    function myfun() {
+        console.error("Hello Shailu");
+        console.warn("Hello Shailu");
+    }
+    function Login(event) {
+        event.preventDefault();
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        console.log("Login " + email + " " + password);
+        //console.log("Login")
+        if (password.length < 5) {
+            alert("password must contain more than 5 letters");
+        }
+        else if (email === "shailu@gmail.com" && password === "12345") {
+            alert("Login Successfull")
+            API()
+        } else {
+            alert("invalid credential")
+        }
+    }
+    async function API() {
+        console.log("called API");
+        try {
+            const response = await fetch('https://671b70fb2c842d92c37fec91.mockapi.io/Project/products')
+            if (response.status === 200) {
+                console.log("suucess")
+                console.log(await response.json())
+            }
+            //console.log(response);
+        } catch (error) {
+            console.error(error)
+        }
+    }
+    // myfun();
+</script>
+
+</html>
