@@ -10,7 +10,8 @@ const App = () => {
 
   return (
     
-    <>
+    <>  
+
         {Myname}
         <p className="text-red-700">{test}</p>
         <Navbar appdata={data} logo={logodata} />
