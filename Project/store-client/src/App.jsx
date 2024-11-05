@@ -1,12 +1,14 @@
 //import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Contact from './pages/Contact'
-import Products from './pages/Products'
+
+import Products from './pages/Product'
 import WebLayout from './layout/WebLayout'
 
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import AdminLayout from './layout/adminLayout'
+import Contacts from './pages/Contacts'
+
 // import {} from 'react'
 const App = () => {
     return (
@@ -16,7 +18,7 @@ const App = () => {
                     <Route element={<WebLayout />}>
                         <Route path='/' element={<Home />} />
                         <Route path='/products' element={<Products />} />
-                        <Route path='/contact' element={<Contact />} />
+                        <Route path='/contacts' element={<Contacts />} />
                     </Route>
                     <Route element={<AdminLayout />}>
                         <Route path='/admin/dashboard' element={<AdminDashboard/>} />

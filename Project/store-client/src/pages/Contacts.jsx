@@ -1,6 +1,6 @@
 import React from 'react'
 import { Mail, Phone, Pin } from 'lucide-react'
-const Contact = () => {
+const Contacts = () => {
   return (
     <>
       <div className='w-screen h-full flex flex-col justify-center items-center'>
@@ -41,4 +41,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+export default Contacts
