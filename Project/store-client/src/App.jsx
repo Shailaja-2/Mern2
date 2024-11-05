@@ -1,25 +1,30 @@
 //import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-
-import Product from './pages/Product'
-import Contact from './pages/Contact'
-import WebLayout from './layout/WebLayout'
 import Home from './pages/Home'
+import Contact from './pages/Contact'
+import Products from './pages/Products'
+import WebLayout from './layout/WebLayout'
 
+import AdminDashboard from './pages/Admin/AdminDashboard'
+import AdminLayout from './layout/adminLayout'
+// import {} from 'react'
 const App = () => {
-  return (
-    <>
-        <BrowserRouter>
-            <Routes>
-              <Route element={<WebLayout />}>
-                <Route path='/' element={<Home />}/>
-                <Route path='/products' element={<Product />}/>
-                <Route path='/contacts' element={<Contact />}/>
-              </Route>  
-            </Routes>
-        </BrowserRouter>
-    </>
-  )
+    return (
+        <>
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<WebLayout />}>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/products' element={<Products />} />
+                        <Route path='/contact' element={<Contact />} />
+                    </Route>
+                    <Route element={<AdminLayout />}>
+                        <Route path='/admin/dashboard' element={<AdminDashboard/>} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+        </>
+    )
 }
 
 export default App
