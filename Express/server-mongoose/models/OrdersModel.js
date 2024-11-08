@@ -1,25 +1,24 @@
-const mongoose=require('mongoose')
+const mongoose = require('mongoose')
 
 const OrdersSchema = new mongoose.Schema({
-    orderId: {
-        type: Number,
-        required:true
+    uid: {
+        type: String,
+        required: true
     },
-    productId: {
-        type: Number,
-        required:true
-        //unique:true
+    pid: {
+        type: String,
+        required: true
     },
-    purchaseAmount: {
+    phone: {
         type: Number,
-        required:true
+        required: true
     },
-    shippingDate: {
-        type: Date,
-        required:true
+    address: {
+        type: String,
+        required: true
     }
 })
 
-const Orders=mongoose.model("Orders", OrdersSchema)
+const Orders = mongoose.model("Orders", OrdersSchema)
 
-module.exports = Orders;
+module.exports = Orders
