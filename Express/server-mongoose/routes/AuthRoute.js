@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router();
 const Users = require('../models/UsersModel')
 const bcrypt = require('bcrypt')
-
+const jwt = require('jsonwebtoken')
 router.post('/register', async (req, res) => {
     try {
         // const newuser = new Users(req.body)
@@ -59,9 +59,11 @@ router.post('/login', async (req, res) => {
             return res.status(500).json({ message: `Invalid Password` })
         }
         
+        //generate JWT
+        const secretkey = '23we'
+        const token = jwt.sign({email: email, exp: Math.floor(Date.now() / 1000) + (60 * 60* 24* 7) },secretkey )
 
-
-        return res.status(200).json({ message: "login success" })
+        return res.status(200).json({ message: "login success", token: token })
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

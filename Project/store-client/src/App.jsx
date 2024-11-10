@@ -8,6 +8,7 @@ import WebLayout from './layout/WebLayout'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import AdminProducts from './pages/Admin/AdminProduct'
 import AdminUsers from './pages/Admin/AdminUser'
+import AdminOrders from './pages/Admin/AdminOrders'
 import Adminsettings from './pages/Admin/AdminSetting'
 import AdminLayout from './layout/adminLayout'
 import Contacts from './pages/Contacts'
@@ -31,6 +32,7 @@ const App = () => {
                         <Route path='/admin/products' element={<AdminProducts />} />
                         <Route path='/admin/users' element={<AdminUsers />} />
                         <Route path='/admin/settings' element={<Adminsettings />} />
+                        <Route path='/admin/orders' element={<AdminOrders />} />
                     </Route>
                 </Routes>
             </BrowserRouter>
