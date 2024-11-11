@@ -51,7 +51,7 @@ const AdminProducts = () => {
   return (
     <div className='w-full h-full flex flex-col justify-start items-start'>
       <AdminPageheader title='Products' />
-      <table className='w-full h-full border-collapse border shadow-lg rounded-md'>
+      <table className='w-full h-full border-collapse border shadow-lg rounded-md'onClick={() => {setShowLogin(!setShowLogin)}}>
         <thead className='shadow-sm font-bold text-purple-500 text-left'>
           <tr>
             <th className='p-6'>Title</th>

@@ -7,15 +7,23 @@ const OrdersSchema = new mongoose.Schema({
     },
     pid: {
         type: String,
-        required: true
+        required: true,
+    },
+    total: {
+        type: String,
+        required: true,
     },
     phone: {
         type: Number,
-        required: true
+        required: true,
     },
     address: {
         type: String,
-        required: true
+        required: true,
+    },
+    orderedAt: {
+        type: Date,
+        default: Date.now,
     }
 })
 
