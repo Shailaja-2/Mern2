@@ -3,6 +3,15 @@ const router = express.Router();
 const Products = require('../models/ProductsModel')
 const validate = require('../config/auth')
 
+router.get('/count', async (req, res) => {
+    try {
+        const count = await Products.countDocuments()
+        return res.status(200).json({ count: count })
+    } catch (error) {
+        return res.status(500).json({ message: error.message })
+    }
+})
+
 // Method : GET  || API : localhost:3000/products/all
 router.get('/all', async (req, res) => {
     try {
