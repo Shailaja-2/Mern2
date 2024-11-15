@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import AdminPageHeader from '../../components/Admin/AdminPageHeader'
+import AdminPageheader from '../../components/Admin/AdminPageheader'
 import { Key, Loader2, Pencil, Plus, Trash, TriangleAlert, X } from 'lucide-react'
 import { getUsers, addUser, editUser, deleteUser, resetPassword } from '../../api/api'
 import { toast } from 'sonner'
@@ -136,7 +136,7 @@ const AdminUsers = () => {
   return (
     <div className='w-full flex flex-col justify-start items-start'>
       <div className='w-full flex flex-row justify-between items-center my-4 shadow-md rounded-md p-1 border'>
-        <AdminPageHeader title='Users' />
+        <AdminPageheader title='Users' />
         <button className='w-10 h-10 font-bold flex justify-center items-center border-2 border-green-500 rounded-md
          text-green-500 shadow-md hover:text-white hover:bg-green-500 hover:shadow-md
           hover:shadow-green-400'

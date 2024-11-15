@@ -13,7 +13,7 @@ import Adminsettings from './pages/Admin/AdminSetting'
 import AdminLayout from './layout/adminLayout'
 import Contacts from './pages/Contacts'
 import Twclasses from './pages/Twclasses'
-
+import NotFound from './pages/NotFound'
 
 // import {} from 'react'
 const App = () => {
@@ -35,6 +35,7 @@ const App = () => {
                         <Route path='/admin/orders' element={<AdminOrders />} />
                     </Route>
                 </Routes>
+                <Route path='*' element={<NotFound />} />
             </BrowserRouter>
         </>
     )
