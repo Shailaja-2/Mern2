@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
-import AdminPageheader from '../../components/Admin/AdminPageheader'
+import AdminPageHeader from '../../components/Admin/AdminPageHeader'
 import { Key, Loader2, Pencil, Plus, Trash, TriangleAlert, X } from 'lucide-react'
 import { getUsers, addUser, editUser, deleteUser, resetPassword } from '../../api/api'
 import { toast } from 'sonner'
@@ -19,6 +19,7 @@ const AdminUsers = () => {
   const fetchData = async () => {
     try {
       const res = await getUsers()
+      // console.log(res.data);
       if (res.status === 200) {
         setUsers(res.data)
       }
@@ -124,19 +125,31 @@ const AdminUsers = () => {
   if (!users || users.length === 0) {
     return (
       <>
-        <div className='w-screen h-[90vh] flex flex-col justify-center items-center'>
-          <TriangleAlert className='text-orange-400 h-12 w-12' />
-          <p>
-            No Users Available !
-          </p>
+        <div className='w-full h-full flex flex-col justify-start items-start'>
+          <div className='w-full flex flex-row justify-between items-center my-4 shadow-md rounded-md p-1 border'>
+            <AdminPageHeader title='Users' />
+            <button className='w-10 h-10 font-bold flex justify-center items-center border-2 border-green-500 rounded-md
+         text-green-500 shadow-md hover:text-white hover:bg-green-500 hover:shadow-md
+          hover:shadow-green-400'
+              onClick={() => setShowAdd(!showAdd)} >
+              <Plus className='w-8 h-8' />
+            </button>
+          </div>
+          <div className='h-[60vh] w-full flex flex-col justify-center items-center gap-3'>
+            <TriangleAlert className='text-orange-400 h-12 w-12' />
+            <p>
+              No Users Available !
+            </p>
+          </div>
         </div>
       </>
     )
   }
+
   return (
     <div className='w-full flex flex-col justify-start items-start'>
       <div className='w-full flex flex-row justify-between items-center my-4 shadow-md rounded-md p-1 border'>
-        <AdminPageheader title='Users' />
+        <AdminPageHeader title='Users' />
         <button className='w-10 h-10 font-bold flex justify-center items-center border-2 border-green-500 rounded-md
          text-green-500 shadow-md hover:text-white hover:bg-green-500 hover:shadow-md
           hover:shadow-green-400'
@@ -191,7 +204,7 @@ const AdminUsers = () => {
       {showAdd && (
         <>
           <div className="absolute top-0 left-0 z-50 h-screen w-screen flex justify-center items-center bg-black/40 ">
-            <div className='h-[95%] w-1/3 flex flex-col justify-center items-center bg-white shadow-2xl rounded-md'>
+            <div className='h-[75%] w-1/3 flex flex-col justify-center items-center bg-white shadow-2xl rounded-md'>
               <div className='h-full w-full flex flex-col justify-center items-center text-lg font-semibold'>
                 <div className="h-[20%] w-[80%] flex flex-row justify-center items-center">
                   <h1 className='w-1/2 text-left text-xl my-6 font-bold text-green-500'>Add User</h1>

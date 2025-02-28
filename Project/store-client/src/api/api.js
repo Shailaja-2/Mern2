@@ -5,14 +5,16 @@ import { getToken } from '../service/auth'
 
 const API = 'http://localhost:3000'
 
+
 const axiosInstance = axios.create({
-    API
+    baseURL: API,
 })
+
 axiosInstance.interceptors.request.use(
     (config) => {
         const token = getToken()
         if (token) {
-            config.headers.Authorization = token
+            config.headers.Authorization = `${token}`
         }
         return config;
     },
@@ -23,20 +25,22 @@ axiosInstance.interceptors.request.use(
 
 // ProductEndPonts
 const getProducts = () => axios.get(`${API}/products/all`)
-const getProductsCount = () => axios.get(`${API}/products/count`)
-const addProduct = (product) => axios.post(`${API}/products/add`, product)
-const editProduct = (product, id) => axios.put(`${API}/products/edit/${id}`, product)
-const deleteProduct = (id) => axios.delete(`${API}/products/delete/${id}`)
+const getProductsCount = () => axiosInstance.get(`/products/count`)
+const addProduct = (product) => axiosInstance.post(`${API}/products/add`, product)
+const editProduct = (product, id) => axiosInstance.put(`${API}/products/edit/${id}`, product)
+const deleteProduct = (id) => axiosInstance.delete(`${API}/products/delete/${id}`)
 
 // OrderEndPonts
-const getOrders = () => axios.get(`${API}/orders/all`)
-const getOrdersCount = () => axios.get(`${API}/orders/count`)
-const deleteOrder = (id) => axios.delete(`${API}/orders/delete/${id}`)
+const getOrders = () => axiosInstance.get(`${API}/orders/all`)
+const addOrder = (order) => axiosInstance.post('/orders/add', order)
+const getOrdersCount = () => axiosInstance.get(`/orders/count`)
+const deleteOrder = (id) => axiosInstance.delete(`${API}/orders/delete/${id}`)
+
 
 //UserEndPoints
-const getUsers = () => axios.get(`${API}/users/all`)
-const getUsersCount = () => axios.get(`${API}/users/count`)
-const addUser = (user) => axios.post(`${API}/users/add`, user)
+const getUsers = () => axiosInstance.get(`/users/all`)
+const getUsersCount = () => axiosInstance.get(`/users/count`)
+const addUser = (user) => axiosInstance.post(`/users/add`, user)
 const editUser = (user, id) => axios.put(`${API}/users/edit/${id}`, user)
 const deleteUser = (id) => axios.delete(`${API}/users/delete/${id}`)
 const resetPassword = (password, id) => axios.put(`${API}/users/resetpassword/${id}`, password)
@@ -59,6 +63,7 @@ export {
     deleteUser,
     resetPassword,
     getOrders,
+    addOrder,
     getOrdersCount,
-    deleteOrder,
+    deleteOrder
 }

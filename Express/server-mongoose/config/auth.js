@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken')
 
 const validateToken = (req, res, next) => {
 
-    const secretkey = '1811321'
+    const secretkey = '1234'
     const token = req.headers.authorization
     // console.log(token)
     if (!token) {
@@ -10,10 +10,12 @@ const validateToken = (req, res, next) => {
     }
     try {
         const validate = jwt.verify(token, secretkey)
+        //Checking Expiry Date
         const exp = validate.exp
         if (exp < (Date.now() / 1000)) {
             return res.status(500).json({ message: "Token Expired" })
         }
+        //Checking Role
         const role = validate.role
         if (!role) {
             return res.status(500).json({ message: "Invalid Access" })
@@ -26,7 +28,7 @@ const validateToken = (req, res, next) => {
 
 const validateTokenAdmin = (req, res, next) => {
 
-    const secretkey = '1811321'
+    const secretkey = '1234'
     const token = req.headers.authorization
     // console.log(token)
     if (!token) {
@@ -49,4 +51,4 @@ const validateTokenAdmin = (req, res, next) => {
 }
 
 
-module.exports = validateToken;
+module.exports = { validateToken, validateTokenAdmin }

@@ -1,7 +1,9 @@
-import { NavLink } from "react-router-dom"
+import { NavLink, useNavigate } from "react-router-dom"
 import { Cross, User, X } from 'lucide-react'
 import { useRef, useState } from "react"
 import { Login, Register } from "../api/api"
+import { getRole, storeToken } from "../service/auth"
+import { toast } from "sonner"
 const Navbar = () => {
     //false (Login hidden) -> true (login visible) Conditional render the login screen 
     const [showLogin, setShowLogin] = useState(false)
@@ -10,7 +12,7 @@ const Navbar = () => {
     const passwordRef = useRef('')
     const nameRef = useRef('')
     const phoneRef = useRef('')
-
+    const navigate = useNavigate()
     const Linksdata = [
         {
             title: 'Home',
@@ -35,18 +37,36 @@ const Navbar = () => {
             const response = await Login(credentials)
             const data = await JSON.stringify(response.data)
             if (response.status === 200) {
-                console.log(response.data.token)
+                const token = response.data.token
+                // console.log(response.data.token)
+                toast.success("Login Success")
                 setShowLogin(false)
+                storeToken(token)
+                if (token) {
+                    const role = getRole()
+                    if (role === "ADMIN") {
+                        //navigate to dashboard
+                        navigate('/admin/dashboard')
+                    } else if (role === "USER") {
+                        //navigate to products
+                        navigate('/products')
+                    }
+                }
             } else {
                 console.log("Login Error" + data)
             }
 
         } catch (error) {
-            console.error(error)
+            if (error.response && (error.response.status === 401 || error.response.status === 400)) {
+                toast.warning(error.response.data.message)
+            } else {
+                toast.error("Server Error")
+            }
         }
 
         console.log(credentials)
     }
+
     const handleRegister = async (e) => {
         e.preventDefault()
         const credentials = {
@@ -61,14 +81,21 @@ const Navbar = () => {
             const data = await JSON.stringify(response.data)
             if (response.status === 200) {
                 console.log("Signup Success" + data)
+                toast.success("Signup Success")
                 setShowRegister(false)
                 setShowLogin(true)
-            } else {
-                console.log("Signup Error" + data)
+            
             }
+            
+
 
         } catch (error) {
-            console.error(error)
+            // console.error(error)
+            if (error.response && (error.response.status === 409 || error.response && error.response.status === 400)) {
+                toast.warning(error.response.data.message)
+            } else {
+                toast.error("Server Error")
+            }
         }
 
         console.log(credentials)
@@ -78,9 +105,8 @@ const Navbar = () => {
             setShowLogin(false)
             setShowRegister(true)
         } else if (showRegister) {
-            setShowRegister(false)
             setShowLogin(true)
-            
+            setShowRegister(false)
         }
     }
     return (
